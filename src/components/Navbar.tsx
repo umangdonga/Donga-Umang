@@ -25,11 +25,19 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 transition-all duration-300">
-      <div className="max-w-6xl mx-auto">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'py-2.5 sm:py-3 bg-[#080808]/92 backdrop-blur-md border-b border-[#2a3050]/40 shadow-xl shadow-black/60'
+          : 'pt-4 sm:pt-5 pb-2 bg-transparent'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <nav
           className={`flex items-center justify-between px-5 md:px-7 py-3 rounded-full transition-all duration-300 ${
-            scrolled ? 'glass-nav bg-[#0c1224]/80 shadow-2xl' : 'glass-nav'
+            scrolled
+              ? 'bg-[#0d1326] border border-[#2e3b66] shadow-2xl shadow-black/80'
+              : 'bg-[#0d1326] border border-blue-500/35 shadow-lg shadow-black/50'
           }`}
         >
           {/* Brand Logo */}

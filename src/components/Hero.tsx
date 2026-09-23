@@ -1,13 +1,19 @@
 import React from 'react';
-import { ArrowRight, Send } from 'lucide-react';
+import { ArrowRight, Send, Download } from 'lucide-react';
 
 interface HeroProps {
   photoUrl: string;
   behanceUrl: string;
   linkedinUrl: string;
+  resumeUrl: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ photoUrl, behanceUrl, linkedinUrl }) => {
+export const Hero: React.FC<HeroProps> = ({
+  photoUrl,
+  behanceUrl,
+  linkedinUrl,
+  resumeUrl,
+}) => {
   return (
     <section id="about-me" className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Subtle Background Glows */}
@@ -51,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ photoUrl, behanceUrl, linkedinUrl })
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
               <a
                 href="#work"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] text-white font-medium text-sm sm:text-base shadow-lg shadow-blue-500/30 transition-all duration-200 hover:scale-[1.02] active:scale-95 group"
@@ -61,8 +67,18 @@ export const Hero: React.FC<HeroProps> = ({ photoUrl, behanceUrl, linkedinUrl })
               </a>
 
               <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blue-950/70 hover:bg-blue-900/70 border border-blue-500/40 text-blue-200 hover:text-white font-medium text-sm sm:text-base shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-95"
+              >
+                <Download className="w-4 h-4 text-[#4181f0]" />
+                <span>Download Resume</span>
+              </a>
+
+              <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900/80 hover:bg-slate-800/80 border border-slate-700/80 hover:border-blue-500/50 text-slate-200 hover:text-white font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-900/80 hover:bg-slate-800/80 border border-slate-700/80 hover:border-blue-500/50 text-slate-200 hover:text-white font-medium text-sm sm:text-base transition-all duration-200 hover:scale-[1.02] active:scale-95"
               >
                 <Send className="w-4 h-4 text-[#4181f0]" />
                 <span>Let's Connect</span>

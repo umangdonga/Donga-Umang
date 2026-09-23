@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Download } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 
 interface NavbarProps {
   resumeUrl: string;
@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '#about-me' },
     { name: 'About me', href: '#about-me' },
     { name: 'Work', href: '#work' },
     { name: 'Skills', href: '#skills' },
@@ -42,14 +42,14 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
         >
           {/* Brand Logo */}
           <a
-            href="#"
-            className="font-bold text-xl md:text-2xl text-white hover:text-[#4181f0] transition-colors tracking-tight select-none"
+            href="#about-me"
+            className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-blue-400 transition-colors"
           >
             Umang Donga
           </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+          <div className="hidden md:flex items-center space-x-8 text-sm font-normal text-slate-300">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
             ))}
           </div>
 
-          {/* Download Resume Button */}
+          {/* Download Resume Button - opens resume link directly */}
           <div className="hidden sm:flex items-center">
             <a
               href={resumeUrl}

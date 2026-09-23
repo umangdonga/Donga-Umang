@@ -21,8 +21,7 @@ import { ImageModal } from './components/ImageModal';
 export default function App() {
   const [modalImage, setModalImage] = useState<{ url: string; title: string } | null>(null);
 
-  const RESUME_URL =
-    'https://drive.google.com/file/d/1pos0KHwn0bAwC_eDpbgP1IthGgtr7cIS/view?usp=sharing';
+  const RESUME_URL = '/Umang_Donga_Resume.pdf';
   const PHOTO_URL =
     'https://framerusercontent.com/images/a9vcaLEy5Cxu04coxUH9ZGBiQQE.png?width=1126&height=1397';
   const BEHANCE_URL = 'https://www.behance.net/umangdonga';
@@ -52,6 +51,7 @@ export default function App() {
           photoUrl={PHOTO_URL}
           behanceUrl={BEHANCE_URL}
           linkedinUrl={LINKEDIN_URL}
+          resumeUrl={RESUME_URL}
         />
 
         {/* Marquee Ticker */}

@@ -1,0 +1,107 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowUpRight, Download } from 'lucide-react';
+
+interface NavbarProps {
+  resumeUrl: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ resumeUrl }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#' },
+    { name: 'About me', href: '#about-me' },
+    { name: 'Work', href: '#work' },
+    { name: 'Skills', href: '#skills' },
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 transition-all duration-300">
+      <div className="max-w-6xl mx-auto">
+        <nav
+          className={`flex items-center justify-between px-5 md:px-7 py-3 rounded-full transition-all duration-300 ${
+            scrolled ? 'glass-nav bg-[#0c1224]/80 shadow-2xl' : 'glass-nav'
+          }`}
+        >
+          {/* Brand Logo */}
+          <a
+            href="#"
+            className="font-bold text-xl md:text-2xl text-white hover:text-[#4181f0] transition-colors tracking-tight select-none"
+          >
+            Umang Donga
+          </a>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="hover:text-white transition-colors relative py-1 text-[14px] font-medium"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Download Resume Button */}
+          <div className="hidden sm:flex items-center">
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 px-5 py-2 text-xs md:text-sm font-medium text-white bg-gradient-to-r from-[#4181f0] to-[#2563eb] hover:from-[#3575e6] hover:to-[#1d4ed8] rounded-full shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-[1.02] active:scale-95 border border-blue-400/30"
+            >
+              <span>Download Resume</span>
+              <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-slate-300 hover:text-white rounded-full bg-slate-800/50 border border-slate-700/50"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </nav>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-2 p-5 rounded-2xl glass-nav bg-[#0a0f1d]/95 border border-blue-500/30 flex flex-col space-y-4 shadow-2xl backdrop-blur-2xl">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-base text-slate-300 hover:text-[#4181f0] py-2 px-3 rounded-lg hover:bg-white/5 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-[#4181f0] rounded-full shadow-lg shadow-blue-500/30"
+            >
+              <span>Download Resume</span>
+              <Download className="w-4 h-4" />
+            </a>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
